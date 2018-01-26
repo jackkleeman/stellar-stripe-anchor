@@ -1,5 +1,5 @@
 {
-  "name": "stellar-gbp-bridge",
+  "name": "stellar-stripe-anchor",
   "version": "1.0.0",
   "scripts": {
     "client": "cd client && yarn start",
