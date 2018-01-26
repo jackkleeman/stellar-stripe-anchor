@@ -1,0 +1,17 @@
+{
+  "name": "stellar-gbp-bridge",
+  "version": "1.0.0",
+  "scripts": {
+    "client": "cd client && yarn start",
+    "server": "nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongodb": "^3.0.1",
+    "uid": "^0.0.2"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.0"
+  }
+}
