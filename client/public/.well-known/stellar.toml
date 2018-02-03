@@ -1,0 +1,4 @@
+[[CURRENCIES]]
+code="USD"
+# this value also exists in clientConfig, bridge.cfg, serverConfig
+issuer="GCZJM35NKGVK47BB4SPBDV25477PZYIYPVVG453LPYFNXLS3FGHDXOCM"

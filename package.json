@@ -3,15 +3,29 @@
   "version": "1.0.0",
   "scripts": {
     "client": "cd client && yarn start",
-    "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "bridge": "./bridge-server/bin/bridge -c bridge.cfg",
+    "server":
+      "concurrently --kill-others-on-fail \"nodemon server.js --ignore bridge-server\" \"yarn bridge\"",
+    "dev":
+      "concurrently --kill-others-on-fail \"NODE_ENV=development yarn server\" \"yarn client\"",
+    "test":
+      "concurrently --kill-others \"yarn bridge\" \"sleep 1 && nyc mocha -R spec test/spec.js\"",
+    "setup":
+      "yarn && cd client && yarn && yarn build && cd ../ && git submodule update --init --recursive && cd bridge-server && go get github.com/constabulary/gb/... && gb build && cd ../ && ./bridge-server/bin/bridge -c bridge.cfg --migrate-db"
   },
   "dependencies": {
     "express": "^4.16.2",
-    "mongodb": "^3.0.1",
-    "uid": "^0.0.2"
+    "log": "^1.4.0",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5",
+    "stripe": "^5.4.0"
   },
   "devDependencies": {
-    "concurrently": "^3.5.0"
+    "concurrently": "^3.5.0",
+    "mocha": "^5.0.0",
+    "nyc": "^11.4.1",
+    "should": "^13.2.1",
+    "stellar-sdk": "^0.8.0",
+    "supertest": "^3.0.0"
   }
 }

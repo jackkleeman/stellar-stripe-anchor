@@ -3,9 +3,11 @@
 # dependencies
 /node_modules
 client/node_modules
+client/build
 
 # testing
 /coverage
+.nyc_output
 
 # production
 /build
@@ -20,3 +22,7 @@ client/node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# configs
+serverConfig.js
+client/src/clientConfig.js

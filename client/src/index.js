@@ -5,6 +5,8 @@ import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import { config } from "./clientConfig.js";
 
+document.title = config.UI.anchorName
+
 ReactDOM.render(
 	<App
 		config={config}

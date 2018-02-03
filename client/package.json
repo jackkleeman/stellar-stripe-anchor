@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.2.0",
+    "query-string": "^5.0.1",
+    "react": "16.2.0",
     "react-currency-input": "https://github.com/jsillitoe/react-currency-input",
-    "react-dom": "^16.2.0",
+    "react-dom": "16.2.0",
+    "react-fontawesome": "^1.6.1",
     "react-materialize": "^1.1.2",
     "react-scripts": "1.1.0",
     "react-stripe-checkout": "^2.6.3",
-    "react-stripe-elements": "^1.4.1",
     "stripe": "^5.4.0"
   },
   "scripts": {
@@ -18,5 +19,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:5000/"
+  "proxy": "http://localhost:5000"
 }

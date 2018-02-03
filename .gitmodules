@@ -1,0 +1,3 @@
+[submodule "bridge-server"]
+	path = bridge-server
+	url = https://github.com/stellar/bridge-server
