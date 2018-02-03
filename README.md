@@ -37,9 +37,11 @@ The key areas where you will need to change variables are:
 | File                                    | Configured variables                                                                  | Purpose                          |
 |-----------------------------------------|---------------------------------------------------------------------------------------|----------------------------------|
 | `serverConfig.js`                       | Stripe secret and Connect ID, issuer account ID and seed,  server port.                                | API server                       |
-| `client/src/clientConfig.js`            | Anchor name, header color, support email, issuer account ID, Stripe publishable key and Connect ID. | Frontend (publicly accessible)   |
+| `client/src/clientConfig.js`            | Anchor name, support email, issuer account ID, Stripe publishable key and Connect ID. | Frontend (publicly accessible)   |
 | `bridge.cfg`                            | Issuer account ID, database settings, horizon settings (testnet or live)              | Bridge                           |
 | `client/public/.well-known/stellar.toml` | Issuer account ID                                                                     | Use `yourdomain` as issuer name  |
+
+`serverConfig.js` and `client/src/clientConfig.js` need to be created from their respective example files.
 
 ### Stripe keys
 

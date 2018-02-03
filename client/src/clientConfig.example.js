@@ -1,7 +1,6 @@
 export const config = {
 	UI: {
 		anchorName: "myAnchor",
-		headerColor: "#222",
 		supportEmail: "jack@example.com"
 	},
 	bridge: {
