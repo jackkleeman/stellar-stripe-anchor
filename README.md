@@ -44,7 +44,7 @@ The key areas where you will need to change variables are:
 | `bridge.cfg`                            | Issuer account ID, database settings, horizon settings (testnet or live)              | Bridge                           |
 | `client/public/.well-known/stellar.toml` | Issuer account ID                                                                     | Use `yourdomain` as issuer name  |
 
-`serverConfig.js` and `client/src/clientConfig.js` need to be created from their respective example files.
+`serverConfig.js` and `client/src/clientConfig.js` need to be created from their respective example files, although this should be done for you by `yarn setup`.
 
 ### Stripe keys
 

@@ -11,7 +11,7 @@
     "test":
       "concurrently --kill-others \"yarn bridge\" \"sleep 1 && nyc mocha -R spec test/spec.js\"",
     "setup":
-      "yarn && cd client && yarn && yarn build && cd ../ && git submodule update --init --recursive && cd bridge-server && go get github.com/constabulary/gb/... && gb build && cd ../ && ./bridge-server/bin/bridge -c bridge.cfg --migrate-db"
+      "cp -n serverConfig.example.js serverConfig.js || true && yarn && cd client && cp -n src/clientConfig.example.js src/clientConfig.js || true && yarn && yarn build && cd ../ && git submodule update --init --recursive && cd bridge-server && go get github.com/constabulary/gb/... && gb build && cd ../ && ./bridge-server/bin/bridge -c bridge.cfg --migrate-db"
   },
   "dependencies": {
     "express": "^4.16.2",
