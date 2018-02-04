@@ -103,7 +103,7 @@ This will run (and auto-refresh) the frontend at `http://localhost:3000`, and th
 
 Stripe provides excellent tools for testing. If you run the application locally (`yarn dev` is simplest) using your stripe test keys, and have your default Stripe Connect redirect URI set to `http://localhost:3000`, then the application will work locally, hosted at `http://localhost:3000`.
 
-To deposit, use any details and the first card specified [here](https://stripe.com/docs/testing#cards-responses), with any CVC and any expiry in the future. This will immeadiately add funds to your available balance.
+To deposit, use any details and the first card specified [here](https://stripe.com/docs/testing#cards-responses), with any CVC and any expiry in the future. This will immediately add funds to your available balance.
 
 To withdraw, click the connect button and sign up with a different email to your Stripe account. Use phone number `(000) 000-0000` and verification code `000-000`. You can use any US debit card as listed [here](https://stripe.com/docs/testing#cards). Then simply follow the instructions in the front-end.
 
