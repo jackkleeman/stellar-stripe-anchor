@@ -76,7 +76,7 @@ If a withdrawal fails due to insufficient balance, you will need to use the brid
 There are essentially no profit margins deliberately baked into this application. Fees have been chosen such that they are guaranteed to cover Stripe fees, which is likely to end up with a slim profit. It is up to you to increase the fee functions in `utils.js` and the frontend copy.
 
 ### Legal
-There are no guarantees that Stripe will be happy with this use of their Connect payouts mechanism, although I see no reason why they wouldn't be; not to mention that they are a major Stellar investor.
+This project isn't endorsed by Stripe nor am I an expert on their policies. It is up to you to maintain a professional relationship with them. This is a software package designed to make it easy to accept and make payments with their platform.
 
 It is likely that you need to provide some sort of disclaimer in the frontend about what you do and do not guarantee. If you are a genuine registered business and open about your identity, and provide some sort of binding guarantee to pay out withdrawals subject to certain conditions, it is likely to improve confidence in your asset and therefore bring its value closer to $1.
 
