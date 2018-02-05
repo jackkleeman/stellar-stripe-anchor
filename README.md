@@ -1,5 +1,5 @@
 # Stellar Stripe Anchor
-This is an all-in-one package for running a USD anchor on stellar using Stripe to accept deposits and pay withdrawals. All you need is an activated Stripe account in the USA, a database, and to be able host this package on an HTTPS domain. It will run a Stellar Bridge for you, and operate entirely autonomously as long as it has sufficient balance.
+This is an all-in-one package for running a USD anchor on Stellar using Stripe to accept deposits and pay withdrawals. All you need is an activated Stripe account in the USA, a database, and to be able host this package on an HTTPS domain. It will run a Stellar Bridge for you, and operate entirely autonomously as long as it has sufficient balance.
 
 Obviously this is opinionated, but can be a base for your own anchor application. Alternatively, it will run out of the box without you needing to learn Stripe or Horizon APIs or worry about edge cases.
 
