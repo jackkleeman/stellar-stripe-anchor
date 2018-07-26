@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
-import DepositForm from "./DepositForm.js";
-import WithdrawalForm from "./WithdrawalForm.js";
+import DepositForm from "./DepositForm";
+import WithdrawalForm from "./WithdrawalForm";
 import { Footer, Card } from "react-materialize";
 import FontAwesome from "react-fontawesome";
 
@@ -11,7 +11,7 @@ class App extends Component {
       <div>
         <nav className="light-blue">
           <div className="nav-wrapper container">
-            <FontAwesome name="anchor" /> {" "} {this.props.config.UI.anchorName}
+            <FontAwesome name="anchor" /> {this.props.config.UI.anchorName}
           </div>
         </nav>
         <div className="container">
@@ -25,7 +25,10 @@ class App extends Component {
         </div>
         <Footer
           className="light-blue"
-          copyrights={"We never have access to your payment details. Problems? Email " + this.props.config.UI.supportEmail}
+          copyrights={
+            "We never have access to your payment details. Problems? Email " +
+            this.props.config.UI.supportEmail
+          }
         />
       </div>
     );
