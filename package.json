@@ -6,6 +6,7 @@
     "bridge": "./bridge-server/bin/bridge -c bridge.cfg",
     "server": "concurrently --kill-others-on-fail \"ts-node -F server.ts --ignore bridge-server\" \"yarn bridge\"",
     "dev": "concurrently --kill-others-on-fail \"NODE_ENV=development yarn server\" \"yarn client\"",
+    "prod": "concurrently --kill-others-on-fail \"NODE_ENV=production yarn server\" \"yarn client\"",
     "test": "concurrently --kill-others \"sleep 1 && NODE_ENV=test nyc ts-mocha -R spec src/test/spec.ts\"",
     "setup": "yarn generate:bridge.cfg && yarn && cd client && yarn && yarn build && cd ../ && git submodule update --init --recursive && cd bridge-server && go get github.com/constabulary/gb/... && gb build && cd ../ && ./bridge-server/bin/bridge -c bridge.cfg --migrate-db",
     "generate:bridge.cfg": "ts-node bridge.cfg.ts"

@@ -23,13 +23,6 @@ For anchor webserver:
 
 ## Setup
 
-### Installing dependencies
-
-1.  Put your SQL database details in `bridge.cfg`
-2.  `yarn setup`
-
-This will install node modules, do a first build of the frontend, pull in the bridge-server submodule and build it, and setup your database.
-
 ### Stripe dashboard setup
 
 1.  Sign up and activate your account. Your location must be set to United States. Activating is not needed until you go into production.
@@ -68,14 +61,15 @@ The key areas where you will need to change variables are:
 | ---------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------- |
 | `.env`,`.env.test`,`.env.production`     | Environment variables (section above)                                                 | Sensitive information           |
 | `client/src/clientConfig.js`             | Anchor name, support email, issuer account ID, Stripe publishable key and Connect ID. | Frontend (publicly accessible)  |
-| `bridge.cfg`                             | Will be generated from your environment vars when running `yarn generate:bridge.cfg`  | Bridge                          |
 | `client/public/.well-known/stellar.toml` | Issuer account ID                                                                     | Use `yourdomain` as issuer name |
 
 `bridge.cfg` will be generated from your system environment variables when running `yarn setup`, make sure you have all the variables setup first.
 
-### Stripe testing
+### Installing dependencies
 
-Use stripe test mode before going live. Do not create live charges for testing purposes.
+`yarn setup`
+
+This will generate the `bridge.cfg` file, install node modules, do a first build of the frontend, pull in the bridge-server submodule and build it, and setup your database.
 
 ## Running in Production
 
@@ -90,7 +84,7 @@ cd client && yarn build && cd ../
 2.  Run the production server with:
 
 ```shell
-yarn server
+yarn prod
 ```
 
 This will also run the bridge for you. If you want to host the bridge yourself, simply edit the bridge script in package.json to do nothing (for example `"bridge": " "`), and change the bridge payEndpoint in your environment configuration.
