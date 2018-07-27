@@ -3,14 +3,9 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
-import { config } from "./clientConfig.js";
+import { config } from "./clientConfig";
 
-document.title = config.UI.anchorName
+document.title = config.UI.anchorName;
 
-ReactDOM.render(
-	<App
-		config={config}
-	/>,
-	document.getElementById("root")
-);
+ReactDOM.render(<App config={config} />, document.getElementById("root"));
 registerServiceWorker();

@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "target": "es2015",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "typeRoots": ["./node_modules/@types"],
+    "rootDir": "src",
+    "lib": ["es2017", "dom"]
+  }
+}
