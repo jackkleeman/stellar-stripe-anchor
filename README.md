@@ -38,22 +38,44 @@ This will install node modules, do a first build of the frontend, pull in the br
 4.  In Connect - Settings input branding details (name, logo, domain), and add a Redirect URI. In production the default URI should be (https needed) `https://yourdomain.com` but for testing you should set the default to `http://localhost:3000`. Take note of your client ID.
 5.  There are three keys you need from Stripe to configure this application, your publishable API key and your secret API key, which are in the API tab, and your Connect client ID. You can get these seperately for Stripe test mode as well (use the test mode slider on the left of the Stripe dashboard)
 
+## Environment configuration
+
+You will need to create a default `.env` file and multiple files according to the environment you want to run your code.
+For example, setting `NODE_ENV=production` will pick up the variables from `.env.production`. Not setting `NODE_ENV` will pick up the default `.env` file.
+
+Example `.env` file:
+
+STRIPE_SECTRET_KEY=sk_test_p3niuTATgGB2xsptKYU6y2hl
+STRIPE_CONNECT_CLIENT_ID=ca_6tmNTYUBmzQ4G38rL8DwQVjCtfzewJwA
+ISSUER_ID=GCFPBUGPOQUVBR3IM3IKYK2SLOXQFLNY4NIKVQUY6YWBO2ZRYWR5J4UQ
+ISSUER_SEED=GCFPBUGPOQUVBR3IM3IKYK2JILJNIWNY4NIKVQUY6YWBO2ZRYIASDFEF
+BRIDGE_IPS=::ffff:127.0.0.1 ::1
+BRIDGE_PAY_ENDPOINT=http://127.0.0.1:8006/payment
+BRIDGE_PORT=8006
+DATABASE_URL=postgres://user:password@10.800.234.345:5432/stellar?sslmode=disable
+DATABASE_TYPE=postgres
+HORIZON_URL=https://horizon-testnet.stellar.org
+NETWORK_PASSPHRASE=Test SDF Network ; September 2015
+WITHDRAW_ENDPOINT=http://localhost:5000/api/withdraw
+
+Note: BRIDGE_IPS will need to be separated with a space.
+
 ## Configuration
 
 The key areas where you will need to change variables are:
 
 | File                                     | Configured variables                                                                  | Purpose                         |
 | ---------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------- |
-| `serverConfig.js`                        | Stripe secret and Connect ID, issuer account ID and seed, server port.                | API server                      |
+| `.env`,`.env.test`,`.env.production`     | Environment variables (section above)                                                 | Sensitive information           |
 | `client/src/clientConfig.js`             | Anchor name, support email, issuer account ID, Stripe publishable key and Connect ID. | Frontend (publicly accessible)  |
-| `bridge.cfg`                             | Issuer account ID, database settings, horizon settings (testnet or live)              | Bridge                          |
+| `bridge.cfg`                             | Will be generated from your environment vars when running `yarn generate:bridge.cfg`  | Bridge                          |
 | `client/public/.well-known/stellar.toml` | Issuer account ID                                                                     | Use `yourdomain` as issuer name |
 
-`serverConfig.js` and `client/src/clientConfig.js` need to be created from their respective example files, although this should be done for you by `yarn setup`.
+`bridge.cfg` will be generated from your system environment variables when running `yarn setup`, make sure you have all the variables setup first.
 
-### Stripe keys
+### Stripe testing
 
-`serverConfig.js` has fields for your Stripe test keys. These are purely for developers to run integration tests and can be left blank. If you want to use Stripe test mode, then you should put your Stripe test keys in the `stripe` (not `stripeTest`) fields, and the same for `clientConfig.js`.
+Use stripe test mode before going live. Do not create live charges for testing purposes.
 
 ## Running in Production
 
@@ -71,7 +93,7 @@ cd client && yarn build && cd ../
 yarn server
 ```
 
-This will also run the bridge for you. If you want to host the bridge yourself, simply edit the bridge script in package.json to do nothing (for example `"bridge": " "`), and change the bridge payEndpoint in `serverConfig.js`.
+This will also run the bridge for you. If you want to host the bridge yourself, simply edit the bridge script in package.json to do nothing (for example `"bridge": " "`), and change the bridge payEndpoint in your environment configuration.
 
 HTTPS is required by Stripe.
 
@@ -81,7 +103,7 @@ The first deposit will take 6 days to become available balance, so you will not 
 
 If a withdrawal fails due to insufficient balance, you will need to use the bridge reprocess payment feature to reinitiate the withdrawal once you have available balance. You should not do this within 24 hours of the failure or Stripes idempotency mechanisms will prevent the payment actually being resent, but you can always choose to pay the person manually from the Stripe dashboard and not reprocess the payment on the bridge.
 
-There are essentially no profit margins deliberately baked into this application. Fees have been chosen such that they are guaranteed to cover Stripe fees, which is likely to end up with a slim profit. It is up to you to increase the fee functions in `utils.js` and the frontend copy.
+There are essentially no profit margins deliberately baked into this application. Fees have been chosen such that they are guaranteed to cover Stripe fees, which is likely to end up with a slim profit. It is up to you to increase the fee functions in `src/utils.ts` and the frontend copy.
 
 ### Legal
 
@@ -119,9 +141,9 @@ To withdraw, click the connect button and sign up with a different email to your
 
 ### Automated Integration Testing
 
-I have written integration tests; they talk to Stripe, and they even use the Horizon testnet. They cover every path it is possible to cover without human input (it's impossible to go through a valid Connect flow programmatically), currently 93.4% of lines. To run them, ensure your bridge is set to use testnet, and that you have a valid (account existing) issuer ID and seed, and a test seed in `test/spec.js`. The accounts currently present in this repository do exist on testnet but may occasionally need topping up by the friendbot.
+Integration tests; they talk to Stripe, and they even use the Horizon testnet. They cover every path it is possible to cover without human input (it's impossible to go through a valid Connect flow programmatically), currently 93.4% of lines. To run them, ensure your bridge is set to use testnet, and that you have a valid (account existing) issuer ID and seed, and a test seed in `src/test/spec.ts`. The accounts currently present in this repository do exist on testnet but may occasionally need topping up by the friendbot.
 
-The tests use the `testStripe` keys from `serverConfig.js`, which should of course be your Stripe test keys, and if you want to be extra careful you should ensure that your production Stripe keys don't exist anywhere, although they shouldn't be used by the tests.
+The tests use the stripe keys from your testing environment file config, you want to be extra careful that your production Stripe keys aren't used in your `.env.test` file.
 
 To run tests:
 
@@ -129,4 +151,4 @@ To run tests:
 yarn test
 ```
 
-Some tests might time out, in which case you can raise their timeouts in `test/spec.js`, and the tests which withdraw via the bridge may altogether fail as they are optimistically hoping that the bridge will notice the withdrawal and tell Stripe within a few seconds. This waiting time can be increased.
+Some tests might time out, in which case you can raise their timeouts in `src/test/spec.ts`, and the tests which withdraw via the bridge may altogether fail as they are optimistically hoping that the bridge will notice the withdrawal and tell Stripe within a few seconds. This waiting time can be increased.
