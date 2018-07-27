@@ -38,6 +38,7 @@ For example, setting `NODE_ENV=production` will pick up the variables from `.env
 
 Example `.env` file:
 
+```shell
 STRIPE_SECTRET_KEY=sk_test_p3niuTATgGB2xsptKYU6y2hl
 STRIPE_CONNECT_CLIENT_ID=ca_6tmNTYUBmzQ4G38rL8DwQVjCtfzewJwA
 ISSUER_ID=GCFPBUGPOQUVBR3IM3IKYK2SLOXQFLNY4NIKVQUY6YWBO2ZRYWR5J4UQ
@@ -50,6 +51,7 @@ DATABASE_TYPE=postgres
 HORIZON_URL=https://horizon-testnet.stellar.org
 NETWORK_PASSPHRASE=Test SDF Network ; September 2015
 WITHDRAW_ENDPOINT=http://localhost:5000/api/withdraw
+```
 
 Note: BRIDGE_IPS will need to be separated with a space.
 
