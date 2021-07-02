@@ -24,7 +24,7 @@
     "log": "^1.4.0",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5",
-    "stellar-sdk": "^0.8.0",
+    "stellar-sdk": "^8.2.3",
     "stripe": "^5.4.0",
     "ts-node": "^7.0.0",
     "typescript": "^2.9.2"
