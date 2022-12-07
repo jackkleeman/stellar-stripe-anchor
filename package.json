@@ -20,7 +20,7 @@
     "body-parser": "1.18.2",
     "concurrently": "^3.5.1",
     "dotenv": "^6.0.0",
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "log": "^1.4.0",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5",
